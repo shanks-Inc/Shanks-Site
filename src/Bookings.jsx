@@ -1,8 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 
-
-export default function Bookings(){
+export default function Bookings() {
   return (
     <div className="min-h-screen bg-brand-black text-neutral-100">
       <header className="sticky top-0 z-50 border-b border-neutral-800 backdrop-blur bg-black/50">
@@ -17,7 +16,11 @@ export default function Bookings(){
         <h1 className="text-3xl font-bold">Booking Request</h1>
         <p className="mt-2 text-neutral-300">Tell me about your event, and I’ll get back to you.</p>
 
-        <form action="https://formspree.io/f/movloake" method="POST" className="mt-8 grid grid-cols-1 sm:grid-cols-2 gap-4">
+        <form
+          action="https://formspree.io/f/movloake"
+          method="POST"
+          className="mt-8 grid grid-cols-1 sm:grid-cols-2 gap-4"
+        >
           <div>
             <label className="block text-sm mb-1">Name*</label>
             <input required name="name" className="w-full rounded-xl bg-neutral-900 border border-neutral-700 px-3 py-2" />
@@ -47,13 +50,14 @@ export default function Bookings(){
             <textarea name="message" rows="6" className="w-full rounded-xl bg-neutral-900 border border-neutral-700 px-3 py-2" />
           </div>
 
+          {/* Optional helpers */}
           <input type="text" name="_gotcha" className="hidden" />
           <input type="hidden" name="_subject" value="New Booking Inquiry" />
           <input type="hidden" name="_redirect" value="/?submitted=1" />
 
           <div className="sm:col-span-2 flex items-center justify-between">
             <p className="text-xs text-neutral-400">By submitting, you agree to be contacted regarding this inquiry.</p>
-            <button className="rounded-2xl px-5 py-2 bg-[var(--gold)] text-black font-semibold shadow-glow">Submit</button>
+            <button className="rounded-2xl px-5 py-2 bg-[var(--gold)] text-black font-semibold">Submit</button>
           </div>
         </form>
       </main>
