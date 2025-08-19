@@ -1,49 +1,55 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 
-// Self-contained list so you can paste this file alone.
-// Change or add items anytime.
+/**
+ * You can add/remove items freely. Each item shows the image from
+ * SmartChoiceSuits.com and clicking the card opens the product page in a new tab.
+ *
+ * If any image 404s in the future, the onError handler will swap to a local
+ * placeholder at /src/assets/shop/shop-all.jpg
+ */
 const items = [
   {
     title: 'Elegant Wedding Tuxedo — White with Fancy Lapel',
     href: 'https://smartchoicesuits.com/elegant-wedding-tuxedo-white-men/',
-    img: '/src/assets/shop/white-tuxedo.jpg',
+    // product image hosted on Smart Choice Suits
+    img: 'https://smartchoicesuits.com/wp-content/uploads/2023/08/elegant-wedding-tuxedo-white-men.jpg'
   },
   {
-    title: 'Slim Fit Black 3-Piece Vested Suit',
-    href: 'https://smartchoicesuits.com/product-tag/wedding-suit/',
-    img: '/src/assets/shop/black-3pc-suit.jpg',
+    title: 'Slim Fit Black 3-Piece Vested Suit (Wedding)',
+    href: 'https://smartchoicesuits.com/wedding-suit/',
+    img: 'https://smartchoicesuits.com/wp-content/uploads/2024/04/slim-fit-black-3-piece-vested-suit.jpg'
   },
   {
     title: 'Black Spiked Glitter Smoking Loafer (S0176)',
     href: 'https://smartchoicesuits.com/black-spiked-glitter-smoking-loafer-s0176/',
-    img: '/src/assets/shop/loafer-s0176.jpg',
+    img: 'https://smartchoicesuits.com/wp-content/uploads/2023/08/black-spiked-glitter-smoking-loafer-s0176.jpg'
   },
   {
     title: 'Black & Silver Studded Smoking Loafer (S0173)',
     href: 'https://smartchoicesuits.com/black-silver-studded-smoking-loafer-s0173/',
-    img: '/src/assets/shop/loafer-s0173.jpg',
+    img: 'https://smartchoicesuits.com/wp-content/uploads/2023/08/black-silver-studded-smoking-loafer-s0173.jpg'
   },
   {
     title: 'Luxury Paisley Vest — White Waistcoat Set',
     href: 'https://smartchoicesuits.com/luxury-paisley-mens-vest-white-waistcoat-suit-set/',
-    img: '/src/assets/shop/vest-white.jpg',
+    img: 'https://smartchoicesuits.com/wp-content/uploads/2023/08/luxury-paisley-mens-vest-white-waistcoat-suit-set.jpg'
   },
   {
     title: 'Luxury Paisley Vest — Royal Blue Waistcoat Set',
     href: 'https://smartchoicesuits.com/luxury-paisley-mens-vest-royal-blue-waistcoat-suit-set/',
-    img: '/src/assets/shop/vest-royal.jpg',
+    img: 'https://smartchoicesuits.com/wp-content/uploads/2023/08/luxury-paisley-mens-vest-royal-blue.jpg'
   },
   {
     title: 'Men’s Prom & Wedding Loafers — Mint',
     href: 'https://smartchoicesuits.com/mens-prom-wedding-loafers-mint/',
-    img: '/src/assets/shop/loafers-mint.jpg',
+    img: 'https://smartchoicesuits.com/wp-content/uploads/2023/08/mens-prom-wedding-loafers-mint.jpg'
   },
   {
     title: 'Shop All at Smart Choice Suits',
     href: 'https://smartchoicesuits.com/shop/',
-    img: '/src/assets/shop/shop-all.jpg',
-  },
+    img: 'https://smartchoicesuits.com/wp-content/uploads/2023/08/smart-choice-suits-shop.jpg'
+  }
 ]
 
 export default function Shop() {
@@ -63,9 +69,21 @@ export default function Shop() {
 
         <div className="mt-8 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {items.map((it, idx) => (
-            <a key={idx} href={it.href} target="_blank" rel="noopener noreferrer" className="group rounded-2xl overflow-hidden border border-neutral-800 hover:border-neutral-600 transition">
+            <a
+              key={idx}
+              href={it.href}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group rounded-2xl overflow-hidden border border-neutral-800 hover:border-neutral-600 transition"
+            >
               <div className="aspect-[4/3] bg-neutral-900 overflow-hidden">
-                <img src={it.img} alt={it.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" loading="lazy" />
+                <img
+                  src={it.img}
+                  alt={it.title}
+                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                  loading="lazy"
+                  onError={(e) => { e.currentTarget.src = '/src/assets/shop/shop-all.jpg' }}
+                />
               </div>
               <div className="p-4 flex items-center justify-between">
                 <div className="font-medium">{it.title}</div>
@@ -76,7 +94,12 @@ export default function Shop() {
         </div>
 
         <div className="mt-10">
-          <a href="https://smartchoicesuits.com/shop/" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 rounded-2xl px-5 py-2 bg-[var(--gold)] text-black font-semibold">
+          <a
+            href="https://smartchoicesuits.com/shop/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-2 rounded-2xl px-5 py-2 bg-[var(--gold)] text-black font-semibold"
+          >
             Shop All on SmartChoiceSuits.com ↗
           </a>
         </div>
