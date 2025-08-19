@@ -23,42 +23,37 @@ export default function App() {
   return (
     <div className="min-h-screen bg-brand-black text-neutral-100">
       {/* HEADER */}
-      <header className="sticky top-0 z-50 border-b border-neutral-800 backdrop-blur bg-black/50">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
-          <a href="#home" className="flex items-center gap-3">
-            {/* IMPORTANT: no lazy here; and note the proper JSX self-closing tag */}
-            <img src={LOGO} alt="Shanks" className="h-12 md:h-14 w-auto drop-shadow" />
-          </a>
+     <header className="sticky top-0 z-50 border-b border-neutral-800 backdrop-blur bg-black/50">
+  <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+    <a href="#home" className="flex items-center gap-3">
+      <img src={LOGO} alt="Shanks" className="h-12 md:h-14 w-auto drop-shadow" />
+    </a>
 
-          <nav className="hidden md:flex items-center gap-6 text-sm">
-            {nav.map(n => (
-              <a key={n.href} href={n.href} className="opacity-85 hover:opacity-100">{n.label}</a>
-            ))}
-            <a href="/bookings" className="rounded-2xl px-4 py-2 bg-[var(--gold)] text-black font-semibold">
-              Bookings
-            </a>
-          </nav>
+    <nav className="hidden md:flex items-center gap-6 text-sm">
+      {nav.map(n => (
+        <a key={n.href} href={n.href} className="opacity-85 hover:opacity-100">{n.label}</a>
+      ))}
+      <a href="/bookings" className="rounded-2xl px-4 py-2 bg-[var(--gold)] text-black font-semibold">Bookings</a>
+    </nav>
 
-          <button
-            className="md:hidden rounded-xl border border-neutral-700 px-3 py-2"
-            onClick={() => setMenuOpen(v => !v)}
-            aria-label="Toggle menu"
-          >
-            ☰
-          </button>
-        </div>
+    <button
+      className="md:hidden rounded-xl border border-neutral-700 px-3 py-2"
+      onClick={() => setMenuOpen(v => !v)}
+      aria-label="Toggle menu"
+    >
+      ☰
+    </button>
+  </div>
 
-        {menuOpen && (
-          <div className="md:hidden border-t border-neutral-800 bg-brand-black px-4 py-3 space-y-2">
-            {nav.map(n => (
-              <a key={n.href} href={n.href} onClick={() => setMenuOpen(false)} className="block rounded-xl px-3 py-2 hover:bg-neutral-800">{n.label}</a>
-            ))}
-            <a href="/bookings" className="block rounded-xl px-3 py-2 bg-[var(--gold)] text-black font-semibold">
-              Bookings
-            </a>
-          </div>
-        )}
-      </header>
+  {menuOpen && (
+    <div className="md:hidden border-t border-neutral-800 bg-brand-black px-4 py-3 space-y-2">
+      {nav.map(n => (
+        <a key={n.href} href={n.href} onClick={() => setMenuOpen(false)} className="block rounded-xl px-3 py-2 hover:bg-neutral-800">{n.label}</a>
+      ))}
+      <a href="/bookings" className="block rounded-xl px-3 py-2 bg-[var(--gold)] text-black font-semibold">Bookings</a>
+    </div>
+  )}
+</header>
 
       {/* HERO */}
       <section id="home" className="relative">
