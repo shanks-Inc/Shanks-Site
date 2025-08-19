@@ -1,18 +1,29 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 
-/**
- * You can add/remove items freely. Each item shows the image from
- * SmartChoiceSuits.com and clicking the card opens the product page in a new tab.
- *
- * If any image 404s in the future, the onError handler will swap to a local
- * placeholder at /src/assets/shop/shop-all.jpg
- */
+// Inline fallback SVG (no extra files needed)
+const FALLBACK =
+  'data:image/svg+xml;utf8,' +
+  encodeURIComponent(`
+  <svg xmlns="http://www.w3.org/2000/svg" width="800" height="600">
+    <rect width="100%" height="100%" fill="#111"/>
+    <rect x="12" y="12" width="776" height="576" fill="none" stroke="#555" stroke-width="2"/>
+    <text x="50%" y="48%" dominant-baseline="middle" text-anchor="middle"
+          font-family="Arial, Helvetica, sans-serif" font-size="22" fill="#ddd">
+      Smart Choice Suits
+    </text>
+    <text x="50%" y="58%" dominant-baseline="middle" text-anchor="middle"
+          font-family="Arial, Helvetica, sans-serif" font-size="14" fill="#aaa">
+      Image unavailable
+    </text>
+  </svg>`)
+
+// You can add/remove items freely.
+// If a specific photo URL 404s later, just update its `img` string below.
 const items = [
   {
     title: 'Elegant Wedding Tuxedo — White with Fancy Lapel',
     href: 'https://smartchoicesuits.com/elegant-wedding-tuxedo-white-men/',
-    // product image hosted on Smart Choice Suits
     img: 'https://smartchoicesuits.com/wp-content/uploads/2023/08/elegant-wedding-tuxedo-white-men.jpg'
   },
   {
@@ -82,7 +93,10 @@ export default function Shop() {
                   alt={it.title}
                   className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
                   loading="lazy"
-                  onError={(e) => { e.currentTarget.src = '/src/assets/shop/shop-all.jpg' }}
+                  // many stores block hotlinking via Referer; this helps
+                  referrerPolicy="no-referrer"
+                  // graceful fallback
+                  onError={(e) => { e.currentTarget.src = FALLBACK }}
                 />
               </div>
               <div className="p-4 flex items-center justify-between">
