@@ -1,10 +1,11 @@
 import React from 'react'
-import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import { createRoot } from 'react-dom/client'
+import { createBrowserRouter, RouterProvider } from 'react-router-dom'
+
 import App from './App.jsx'
 import Bookings from './Bookings.jsx'
 import Shop from './Shop.jsx'
-import './styles.css'
+
 
 const router = createBrowserRouter([
   { path: '/', element: <App /> },
